@@ -16,5 +16,4 @@ def entrycontent(request, entrytitle):
 
     return render(request, "encyclopedia/entrycontent.html", {
         "content": html_content,
-        "entrytitle": entrytitle
     })
