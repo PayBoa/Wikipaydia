@@ -9,11 +9,13 @@ def index(request):
     })
 
 def entrycontent(request, entrytitle):
-
     md_content = util.get_entry(entrytitle)
-    html_content = markdown.markdown(md_content)
-
-
-    return render(request, "encyclopedia/entrycontent.html", {
-        "content": html_content,
-    })
+    if md_content == None:
+        return render(request, "encyclopedia/notfound.html", {
+            "entrytitle": entrytitle
+        })
+    else:
+        html_content = markdown.markdown(md_content)
+        return render(request, "encyclopedia/entrycontent.html", {
+            "content": html_content,
+        })
