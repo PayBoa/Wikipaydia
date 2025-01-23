@@ -18,4 +18,8 @@ def entrycontent(request, entrytitle):
         html_content = markdown.markdown(md_content)
         return render(request, "encyclopedia/entrycontent.html", {
             "content": html_content,
+            "entrytitle": entrytitle
         })
+    
+def searchresults(request):
+    return render(request, "encyclopedia/searchresults.html")
