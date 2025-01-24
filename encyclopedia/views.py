@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from . import util
 import markdown
+import re
+from difflib import get_close_matches
 
 
 def index(request):
@@ -34,12 +36,24 @@ def searchresults(request):
     if query in entries_lower:
         return entrycontent(request, query)
     
-    # Else, check if it is a substring of an entry
-    matches = []  
-    for s in entries:  # Iterate over each string in the list
-        if query in s:  # Check if `input_string` is a substring of `s`
-            matches.append(s)  # If True, add `s` to the matches list
+    # Else, check if it looks like an entry
+
+    # SUBSTRING METHOD
+    #matches = []  
+    #for s in entries:  # Iterate over each string in the list
+    #    if query in s:  # Check if `input_string` is a substring of `s`
+    #        matches.append(s)  # If True, add `s` to the matches list
     
+    # REGEX METHOD
+    #matches = []  
+    #pattern = re.escape(query)  # Escape special characters in query
+    #for s in entries:
+    #    if re.search(pattern, s):  # Check if the pattern exists in the string
+    #        matches.append(s)
+
+    # DIFFLIB METHOD
+    matches = get_close_matches(query, entries, n=10, cutoff=0.15)
+
     # Return search page with a list of all matches
     return render(request, "encyclopedia/searchresults.html", {
         "matches": matches
