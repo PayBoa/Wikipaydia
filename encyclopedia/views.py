@@ -26,11 +26,21 @@ def searchresults(request):
     query = request.GET.get('q', '').lower() # Get the query in lowercase
     entries = util.list_entries() # List all entries
 
-    for i in range(len(entries)): # Make all entries lowercase
-        entries[i] = entries[i].lower()
-
-    # If there is a match for the query in the entries, return content
-    if query in entries:
+    entries_lower = [] # Make all entries lowercase
+    for i in range(len(entries)): 
+        entries_lower.append(entries[i].lower())
+    
+    # If there is an exact match for the query in the entries, return content
+    if query in entries_lower:
         return entrycontent(request, query)
     
-    return render(request, "encyclopedia/searchresults.html")
+    # Else, check if it is a substring of an entry
+    matches = []  
+    for s in entries:  # Iterate over each string in the list
+        if query in s:  # Check if `input_string` is a substring of `s`
+            matches.append(s)  # If True, add `s` to the matches list
+    
+    # Return search page with a list of all matches
+    return render(request, "encyclopedia/searchresults.html", {
+        "matches": matches
+    })
