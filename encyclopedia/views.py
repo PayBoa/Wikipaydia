@@ -23,9 +23,10 @@ def entrycontent(request, entrytitle):
         html_content = markdown.markdown(md_content)
         return render(request, "encyclopedia/entrycontent.html", {
             "content": html_content,
-            "entrytitle": entrytitle
+            "entrytitle": entrytitle,
         })
     
+
 def searchresults(request):
     query = request.GET.get('q', '').lower() # Get the query in lowercase
     entries = util.list_entries() # List all entries
@@ -91,4 +92,6 @@ def newpage(request):
 
 
 def editpage(request):
+    entrytitle = request.GET.get("entrytitle")
+    print(entrytitle)
     return render(request, "encyclopedia/editpage.html")

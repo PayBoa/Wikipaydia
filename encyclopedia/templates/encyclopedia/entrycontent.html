@@ -11,6 +11,7 @@
             {{ content|safe }}
         </div>
         <div class="mt-3 mb-3">
+            <input hidden value="{{ entrytitle }}" name="entrytitle">
             <a class="btn btn-outline-secondary btn-sm" href="{% url 'editpage' %}">Edit</a>
         </div>
     </div>
