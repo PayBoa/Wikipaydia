@@ -11,15 +11,23 @@
         <h1>Create a New Page</h1>
         <h6>Create a new encyclopedia entry by entering a title and the Markdown content for the page <br> Click "Submit" to save your entry.</h6>
 
-        <div class="mb-3">
-            <label for="newEntryTitle" class="form-label">Title</label>
-            <input type="text" class="form-control" id="newEntryTitle" placeholder="New Entry Title...">
-        </div>
-        
-        <div class="mb-3">
-            <label for="newEntryMdContent" class="form-label">Markdown Content</label>
-            <textarea class="form-control" id="newEntryMdContent" rows="3" placeholder="Markdown Content..."></textarea>
-        </div>
+        <form action="{% url 'newpage' %}" method="post">
+            {% csrf_token %}
 
+            <div class="mb-3 mt-3">
+                <label for="newEntryTitle" class="form-label">Title</label>
+                <input type="text" class="form-control" id="newEntryTitle" placeholder="New Entry Title...">
+            </div>
+
+            <div class="mb-3">
+                <label for="newEntryMdContent" class="form-label">Markdown Content</label>
+                <textarea class="form-control" id="newEntryMdContent" rows="3" placeholder="Markdown Content..."></textarea>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+
+        </form>
     </div>
 {% endblock %}
