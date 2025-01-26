@@ -1,0 +1,32 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    WikiPaydia: New Page
+{% endblock %}
+
+{% block body %}
+
+    
+    <div class="container">
+        <h1>Edit This Page</h1>
+        <h6>Modify the title, the Markdown content or both!<br> Click "Submit" to save your modifications.</h6>
+
+        <form action="{% url 'newpage' %}" method="post">
+            {% csrf_token %}
+
+            <div class="mb-3 mt-3">
+                <label for="newEntryTitle" class="form-label">Title</label>
+                <input type="text" class="form-control" id="newEntryTitle" name="title" placeholder="New Entry Title..." required>
+            </div>
+
+            <div class="mb-3">
+                <label for="newEntryMdContent" class="form-label">Markdown Content</label>
+                <textarea class="form-control" id="newEntryMdContent" name="mdcontent" rows="5" placeholder="Markdown Content..." required></textarea>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
