@@ -88,3 +88,7 @@ def newpage(request):
     
     # If request method is get, render newpage.html
     return render(request, "encyclopedia/newpage.html")
+
+
+def editpage(request):
+    return render(request, "encyclopedia/editpage.html")
