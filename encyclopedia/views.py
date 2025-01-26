@@ -17,7 +17,7 @@ def entrycontent(request, entrytitle):
     md_content = util.get_entry(entrytitle)
     if md_content is None and entrytitle != "searchresults":
         return render(request, "encyclopedia/notfound.html", {
-            "entrytitle": entrytitle
+            "entrytitle": entrytitle.capitalize()
         })
     else:
         html_content = markdown.markdown(md_content)
@@ -66,11 +66,25 @@ def newpage(request):
         title = request.POST.get("title") # Get the title
         mdcontent = request.POST.get("mdcontent") # Get the markdown content
 
-        if not title or not mdcontent: # Verify they are not empty
+        # Verify they are both specified
+        if not title or not mdcontent: 
             return HttpResponse("Title and content cannot be empty.", status=400)
         
-        util.save_entry(title, mdcontent) # Save title and content
+        # Verify if the entry already exists
+        entries = util.list_entries() # List all entries
+        entries_lower = [] # Make all entries lowercase
+        for i in range(len(entries)): 
+            entries_lower.append(entries[i].lower())
+        if title.lower() in entries_lower: # Verify
+            return render(request, "encyclopedia/existingentryerror.html",{
+                "title": title.capitalize()
+            })
 
-        return entrycontent(request, title) # Take user to the new entry page
+        # Save title and content
+        util.save_entry(title, mdcontent)
+
+        # Take user to the new entry page
+        return entrycontent(request, title)
     
+    # If request method is get, render newpage.html
     return render(request, "encyclopedia/newpage.html")
