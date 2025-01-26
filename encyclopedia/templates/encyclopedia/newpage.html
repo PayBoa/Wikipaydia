@@ -16,18 +16,17 @@
 
             <div class="mb-3 mt-3">
                 <label for="newEntryTitle" class="form-label">Title</label>
-                <input type="text" class="form-control" id="newEntryTitle" placeholder="New Entry Title...">
+                <input type="text" class="form-control" id="newEntryTitle" name="title" placeholder="New Entry Title..." required>
             </div>
 
             <div class="mb-3">
                 <label for="newEntryMdContent" class="form-label">Markdown Content</label>
-                <textarea class="form-control" id="newEntryMdContent" rows="3" placeholder="Markdown Content..."></textarea>
+                <textarea class="form-control" id="newEntryMdContent" name="mdcontent" rows="5" placeholder="Markdown Content..." required></textarea>
             </div>
 
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-
         </form>
     </div>
 {% endblock %}

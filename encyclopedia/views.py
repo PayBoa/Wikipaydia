@@ -3,6 +3,8 @@ from . import util
 import markdown
 import re
 from difflib import get_close_matches
+from django.http import HttpResponse
+
 
 
 def index(request):
@@ -60,4 +62,15 @@ def searchresults(request):
     })
 
 def newpage(request):
+    if request.method == "POST":
+        title = request.POST.get("title") # Get the title
+        mdcontent = request.POST.get("mdcontent") # Get the markdown content
+
+        if not title or not mdcontent: # Verify they are not empty
+            return HttpResponse("Title and content cannot be empty.", status=400)
+        
+        util.save_entry(title, mdcontent) # Save title and content
+
+        return entrycontent(request, title) # Take user to the new entry page
+    
     return render(request, "encyclopedia/newpage.html")
