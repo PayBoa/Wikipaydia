@@ -6,10 +6,13 @@
 
 {% block body %}
 
-    <h1>Search Results</h1>
-    <ul>
-        {% for match in matches %}
-            <li><a href="/{{ match }}">{{ match }}</a></li>
-        {% endfor %}
-    </ul>
+    <div class="container">
+        <h1>Search Results</h1>
+        <ul>
+            {% for match in matches %}
+                <li><a href="/{{ match }}">{{ match }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    
 {% endblock %}

@@ -58,3 +58,6 @@ def searchresults(request):
     return render(request, "encyclopedia/searchresults.html", {
         "matches": matches
     })
+
+def newpage(request):
+    return render(request, "encyclopedia/newpage.html")
