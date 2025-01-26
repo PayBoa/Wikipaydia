@@ -8,12 +8,15 @@
 
     <div class="container">
         <h1>All Pages</h1>
+        <h6>All existing pages are listed above.</h6>
 
-        <ul>
-            {% for entry in entries %}
-                <li><a href="/{{ entry }}">{{ entry }}</a></li>
-            {% endfor %}
-        </ul>
+        <div class="mb-3 mt-3">
+            <ul>
+                {% for entry in entries %}
+                    <li><a href="/{{ entry }}">{{ entry }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 
 
