@@ -92,6 +92,10 @@ def newpage(request):
 
 
 def editpage(request):
-    entrytitle = request.GET.get("entrytitle")
-    print(entrytitle)
-    return render(request, "encyclopedia/editpage.html")
+    entrytitle = request.GET.get("entrytitle") # Get entry title
+    md_content = util.get_entry(entrytitle) # Get content of the page
+
+    return render(request, "encyclopedia/editpage.html", {
+        "entrytitle": entrytitle,
+        "md_content": md_content
+    })

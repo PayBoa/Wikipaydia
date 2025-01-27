@@ -11,8 +11,11 @@
             {{ content|safe }}
         </div>
         <div class="mt-3 mb-3">
-            <input hidden value="{{ entrytitle }}" name="entrytitle">
-            <a class="btn btn-outline-secondary btn-sm" href="{% url 'editpage' %}">Edit</a>
+            <form action="{% url 'editpage' %}" method="get">
+                {% csrf_token %}
+                <input type="hidden" name="entrytitle" value="{{ entrytitle }}">
+                <button type="submit" class="btn btn-outline-secondary btn-sm">Edit</button>
+            </form>
         </div>
     </div>
 
