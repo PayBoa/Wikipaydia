@@ -95,11 +95,11 @@ def editpage(request):
     entrytitle = request.GET.get("entrytitle") # Get entry title
     md_content = util.get_entry(entrytitle) # Get content of the page
 
-    if request.method == "POST":
-        newentrytitle = request.POST.get("title")
-        newmd_content = request.POST.get("mdcontent")
-        util.save_entry(newentrytitle, newmd_content)
-        return entrycontent(request, newentrytitle)
+    if request.method == "POST": # When clicked on submit button
+        newentrytitle = request.POST.get("title") # Get new entry title
+        newmd_content = request.POST.get("mdcontent") # Get new Markdown title
+        util.save_entry(newentrytitle, newmd_content) # Save both
+        return entrycontent(request, newentrytitle) # Return modified entry page
 
     return render(request, "encyclopedia/editpage.html", {
         "entrytitle": entrytitle,
