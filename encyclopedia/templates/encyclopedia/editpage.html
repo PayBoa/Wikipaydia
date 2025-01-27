@@ -11,7 +11,7 @@
         <h1>Edit This Page</h1>
         <h6>Modify the title, the Markdown content or both!<br> Click "Submit" to save your modifications.</h6>
 
-        <form action="{% url 'newpage' %}" method="post">
+        <form action="{% url 'editpage' %}" method="post">
             {% csrf_token %}
 
             <div class="mb-3 mt-3">
