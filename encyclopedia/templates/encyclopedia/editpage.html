@@ -15,16 +15,16 @@
             {% csrf_token %}
 
             <div class="mb-3 mt-3">
-                <label for="newEntryTitle" class="form-label">Title</label>
+                <label for="newEntryTitle" class="form-label font-weight-bold">Title</label>
                 <input type="text" class="form-control" id="newEntryTitle" name="title" required value="{{ entrytitle }}">
             </div>
 
             <div class="mb-3">
-                <label for="newEntryMdContent" class="form-label">Markdown Content</label>
+                <label for="newEntryMdContent" class="form-label font-weight-bold">Markdown Content</label>
                 <textarea class="form-control" id="newEntryMdContent" name="mdcontent" rows="5" required>{{ md_content }}</textarea>
             </div>
 
-            <div class="mb-3">
+            <div class="mb-3 mt-4">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
         </form>

@@ -8,19 +8,24 @@
 
     
     <div class="container">
-        <h1>Create a New Page</h1>
-        <h6>Create a new encyclopedia entry by entering a title and the Markdown content for the page <br> Click "Submit" to save your entry.</h6>
-
+        <div>
+            <h1>Create a New Page</h1>
+            <h6>Create a new encyclopedia entry by entering a title and the Markdown content for that page <br> 
+                Click "Submit" to save your entry.</h6>
+        </div>
+        <div>
+            <p>Unconfortable with Markdown syntax ? You might find this <a href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax">link</a> helpful</p>
+        </div>
         <form action="{% url 'newpage' %}" method="post">
             {% csrf_token %}
 
             <div class="mb-3 mt-3">
-                <label for="newEntryTitle" class="form-label">Title</label>
+                <label for="newEntryTitle" class="form-label font-weight-bold">Title</label>
                 <input type="text" class="form-control" id="newEntryTitle" name="title" placeholder="New Entry Title..." required>
             </div>
 
             <div class="mb-3">
-                <label for="newEntryMdContent" class="form-label">Markdown Content</label>
+                <label for="newEntryMdContent" class="form-label font-weight-bold">Markdown Content</label>
                 <textarea class="form-control" id="newEntryMdContent" name="mdcontent" rows="5" placeholder="Markdown Content..." required></textarea>
             </div>
 
