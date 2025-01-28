@@ -2,6 +2,7 @@ from django.shortcuts import render
 from . import util
 import markdown
 import re
+import random
 from difflib import get_close_matches
 from django.http import HttpResponse
 
@@ -97,7 +98,7 @@ def editpage(request):
 
     if request.method == "POST": # When clicked on submit button
         newentrytitle = request.POST.get("title") # Get new entry title
-        newmd_content = request.POST.get("mdcontent") # Get new Markdown title
+        newmd_content = request.POST.get("mdcontent") # Get new Markdown content
         util.save_entry(newentrytitle, newmd_content) # Save both
         return entrycontent(request, newentrytitle) # Return modified entry page
 
@@ -105,3 +106,9 @@ def editpage(request):
         "entrytitle": entrytitle,
         "md_content": md_content
     })
+
+
+def randompage(request):
+    entries = util.list_entries() # Get the list of all entries
+    randomentry = random.choice(entries) # Select a random entry
+    return entrycontent(request, randomentry) # Return that random entry page
